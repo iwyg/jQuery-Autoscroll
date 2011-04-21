@@ -1,6 +1,6 @@
-# jQuery Autoscroll: an autoscrolling #
+# jQuery Autoscroll #
 
-## A Plugin for the jQuery Javascript Library
+## An autoscrolling Plugin for the jQuery Javascript Library
  
  - name: jquery.autoscroll.js
  - author: thomas appel, mail(at)thomas-appel(dot)com
@@ -9,7 +9,7 @@
 
 ### usage:
   
-  1. create html container which contains something like a unordered list
+  1. create html container which contains something like an unordered list
   2. setup plugin like this: $(mycontainer).autoscroll();
   
 ### options:
@@ -26,10 +26,10 @@
   
 ### misc:
 
-- camptible with jquery.events.destroyed
+- compatible with jquery.events.destroyed
 - plugin will detroy itself if container is removed from DOM
-- if you want di teardown the plugin manually, just call: $(mycontainer).data('autoscroll').destroy();
-    or simply $(mycontainer).trigger('destroyed');
+- if you want to teardown the plugin manually, just call: $(mycontainer).data('autoscroll').destroy();
+    - or simply $(mycontainer).trigger('destroyed');
 
 ### revision:
 
