@@ -1,19 +1,19 @@
 
  
- # jQuery Autoscroll: an autoscrolling # 
- ## Plugin for the jQuery Javascript Library #
+ # jQuery Autoscroll: an autoscrolling
+ ## Plugin for the jQuery Javascript Library
  
  - name: jquery.autoscroll.js
  - author: thomas appel, mail(at)thomas-appel(dot)com
  - copyright: thomas appel
  - version: 2
 
- ### usage: ### 
+ ### usage:
   
   1. create html container which contains something like a unordered list
   2. setup plugin like this: $(mycontainer).autoscroll();
   
- ### options: ###
+ ### options:
   
   - scrollOnClick : boolean; if set, you my create navigation "links" for back and forward scrolling
     - These links must not be children of the container element. 
@@ -25,17 +25,17 @@
   - scrollOnClickEasing : easing method for scrollOnClick option // default 'swing'
   - scrollOnClickDuration : scrollanimation duration for scrollOnClick option
   
- ### misc: ###
+ ### misc:
 
   - camptible with jquery.events.destroyed
   - plugin will detroy itself if container is removed from DOM
   - if you want di teardown the plugin manually, just call: $(mycontainer).data('autoscroll').destroy();
     or simply $(mycontainer).trigger('destroyed');
 
- ### revision: ### 
+ ### revision:
 
   - 2
 
- ### known issues ###:
+ ### known issues:
 
   - removed support for tables
