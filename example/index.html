@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jquery auto scroll</title>
+		<meta charset="UTF-8">
+		<script type="text/javascript" src="jquery.local.min.js"></script>
+		<style>
+			#scroller,#scroller3 {height:200px;width:618px;overflow:hidden;margin-bottom:40px;}
+			#scroller ul {margin-left:-6px;}
+			#scroller3 {width:618px;margin-left:-4px}
+			table{table-layout:fixed;border:0;border-spacing:4px;}
+			td {border:0;}
+			tr {margin:0;}
+			img {display:block;}
+			#scroller2 {width:200px;height:600px;overflow:hidden;margin-bottom:40px;}	
+			ul , table {height:200px;position:relative;list-style: none;margin:0;padding:0}
+			ul {width:100%;}
+			li {float:left;margin-left:6px}
+			li, td div {height:200px;width:200px;float:left;background:red;}
+			li:nth-child(even) {background:grey;}
+			li:nth-child(odd) {background:greenyellow;}
+			li:first-child {background:red;}
+			li:last-child {background:red;}
+			li.blue {background-color:blue !important;}
+		</style>
+	</head>
+	<body>
+		<div style="margin-left:23px;">
+		<div id="scroller">
+			<ul>
+				
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/1"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/2"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/3"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/4"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/5"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/6"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/7"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/8"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/9"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/10"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/1"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/2"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/3"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/4"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/5"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/6"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/7"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/8"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/9"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/10"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/10"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/10"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/10"/></li>									
+			</ul>	
+			
+		</div>
+			<a class="prev" href="#">prev</a>
+			<a class="next" href="#">next</a>			
+		</div>
+						
+		<div style="margin-left:23px;">
+		<div id="scroller2">
+			<ul>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/1"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/2"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/3"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/4"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/5"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/6"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/7"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/8"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/9"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/10"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/1"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/2"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/3"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/4"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/5"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/6"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/7"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/8"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/9"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/10"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/10"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/10"/></li>									
+				<li><img width="200" height="200" alt="lorempixum" src="http://lorempixum.com/g/200/200/abstract/10"/></li>																					
+			</ul>					
+		</div>
+		<a class="prev2" href="#">prev</a>
+		<a class="next2" href="#">next</a>			
+		</div>
+
+	</body>
+	<script src="../src/jquery.autoscroll.js"></script>
+	<script src="setup.js"></script>
+</html>
