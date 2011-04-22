@@ -4,7 +4,7 @@
  * --------------------------------------------------------------------------------------------
  * usage: 
  * 
- * - create html container which contains something like a unordered list
+ * - create html container which contains something like an unordered list
  * - setup plugin like this: $(mycontainer).autoscroll();
  * 
  * --------------------------------------------------------------------------------------------
@@ -23,8 +23,8 @@
  * --------------------------------------------------------------------------------------------
  * misc:
  * --------------------------------------------------------------------------------------------
- * - camptible with jquery.events.destroyed
- * - plugin will detroy itself if container is removed from DOM
+ * - compatible with jquery.events.destroyed
+ * - plugin will destroy itself if container is removed from DOM
  * - if you want di teardown the plugin manually, just call: $(mycontainer).data('autoscroll').destroy();
  *	 or simply $(mycontainer).trigger('destroyed');
  * --------------------------------------------------------------------------------------------
@@ -60,44 +60,8 @@
 		IN : 'mouseenter',
 		OUT : 'mouseleave',
 		MOVE : 'mousemove',
-		CLICK : 'click'
-	}
-	
-	// PRIVATE FUNCTIONS	
-	function scroll( elem, pos ){		
-		var that = this,
-			w = elem[propertyStack.INNER_W_H[this.orient]](),		// scrollcontainer inner width or height
-			// so = elem[0][propertyStack.SCROLL[this.orient]],		// scrollcontainer ScrollLeft or ScrollTop
-			sw = elem[0][propertyStack.SCROLL_W_H[this.orient]],	// scrollcontainer ScrollWidth or ScrollHeight
-			ab = w/ 2 ,
-			cc = pos - ab,
-			cd = sw / ab,
-			aac = ( sw ) / ab,
-			sca,
-			speed = Math.ceil(100*(cc)/ab)/100;			
-			this.__tmp__.scs += speed * aac ;
-			sca = Math.round( this.__tmp__.scs );
-			elem[0][propertyStack.SCROLL[this.orient]] = sca ;	
-			
-		if ( elem[0][propertyStack.SCROLL[this.orient]] !== sca ) {
-			this.__tmp__.scs = this.__tmp__.m;
-				
-			clearTimeout(this.__tmp__.timer);
-			this.__tmp__.timer = false;
-		} else {
-			this.__tmp__.m = this.__tmp__.scs;
-			/*
-			 * triggering loop
-			 **/
-			this.__tmp__.timer = setTimeout(function (){
-				that._getScroll();
-			},15);
-		}
-	}	
-	
-	
-	function getOrientation( elem ){
-		return elem.width() > elem.height() ? 0 : 1;
+		CLICK : 'click',
+		DESTROYED: 'destroyed'
 	}
 	
 	function getDimension ( elem, index ) {
@@ -147,7 +111,7 @@
 				case events.CLICK:
 					this.scrollStepWise( event );
 					break;
-				case 'destroyed':
+				case events.DESTROYED:
 					this.destroy();
 					break;
 				default:
@@ -180,14 +144,11 @@
 			w = this.elem[propertyStack.INNER_W_H[this.orient]](),			// scroll container inner width or height
 			s = this.elem[0][propertyStack.SCROLL[this.orient]],			// current scroll offset
 			ss = this.elem[0][propertyStack.SCROLL_W_H[this.orient]],		// overall scroll width	or height
-			// sup = ss % Math.abs(w-s) || 0;
 			sup = w > s ? w%s : s%w;
 			if ( e.target === this.settings.navNext[0]) {
-			//	val = ( isNaN(sup) || sup === 0 ) ? ( w + s ) : s < w ? w : Math.ceil(s/w) * w;				
 				val = ( isNaN(sup) || sup === 0 ) ? ( w + s ) : Math.ceil(s/w) * w;				
 			}
-			if ( e.target === this.settings.navPrev[0]) {
-				//val = ( isNaN(sup) || sup === 0 ) ? ( s - w ) : s < w ? 0 : (Math.ceil(s/w) * w) - w;				
+			if ( e.target === this.settings.navPrev[0]) {	
 				val = ( isNaN(sup) || sup === 0 ) ? ( s - w ) : (Math.ceil(s/w) * w) - w;				
 			}
 			anim[propertyStack.SCROLL[this.orient]] = Math.max(Math.min(val, ss-w),0);
@@ -201,7 +162,7 @@
 		_bind : function ( nav ) {
 			this.elem.bind(events.IN + '.' + this.name, $.proxy( this.handleEvents, this ) );
 			this.elem.bind(events.OUT + '.' + this.name, $.proxy( this.handleEvents, this ) );			
-			this.elem.bind('destroyed', $.proxy( this.handleEvents, this ) );
+			this.elem.bind(events.DESTROYED, $.proxy( this.handleEvents, this ) );
 			
 			if ( nav ) {
 				this.settings.navNext.bind(events.CLICK + '.' + this.name, $.proxy( this.handleEvents, this ) );				
@@ -230,11 +191,11 @@
 
 			dim = getDimension(this.elem, this.orient);			
 			if ( !dim ) {
-				this.elem.trigger('destroyed');
+				this.elem.trigger( events.DESTROYED );
 			}
 		},
 		destroy : function( ){			
-			this.elem.unbind( 'destroyed' );			
+			this.elem.unbind( events.DESTROYED );			
 			this.teardown( this.elem, this.name );
 		},
 		teardown : function ( elem, name ) {
@@ -254,6 +215,7 @@
 			scrollOnClickDuration : 1
 			
 		};
+
 		$.extend(o, defaults, options);
     
 		return this.each(function (){
