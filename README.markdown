@@ -13,7 +13,10 @@
   2. setup plugin like this: $(mycontainer).autoscroll();
   
 ### options:
-  
+
+- easeOut : boolean. If set, scrolling isn’t cut off abrubt when mouse leaves scrolling area
+- easeOutResistance : any float value float from 0 to 1  
+
 - scrollOnClick : boolean; if set, you my create navigation "links" for back and forward scrolling
     - These links must not be children of the container element. 
     - Also note that scrollOnClick is only useful/working if the scrollable content (e.g. a html List Element) has equal heights/width
@@ -37,4 +40,4 @@
 
 ### known issues:
 
-- removed support for tables
+- scrollOnClick : animation is ugly if duration is greater than 600ms
