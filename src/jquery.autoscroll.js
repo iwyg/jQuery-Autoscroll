@@ -62,6 +62,43 @@
 		MOVE : 'mousemove',
 		CLICK : 'click',
 		DESTROYED: 'destroyed'
+	};
+	
+	// PRIVATE FUNCTIONS	
+	function scroll( elem, pos ){		
+		var that = this,
+			w = elem[propertyStack.INNER_W_H[this.orient]](),		// scrollcontainer inner width or height
+			// so = elem[0][propertyStack.SCROLL[this.orient]],		// scrollcontainer ScrollLeft or ScrollTop
+			sw = elem[0][propertyStack.SCROLL_W_H[this.orient]],	// scrollcontainer ScrollWidth or ScrollHeight
+			ab = w/ 2 ,
+			cc = pos - ab,
+			cd = sw / ab,
+			aac = ( sw ) / ab,
+			sca,
+			speed = Math.ceil(100*(cc)/ab)/100;			
+			this.__tmp__.scs += speed * aac ;
+			sca = Math.round( this.__tmp__.scs );
+			elem[0][propertyStack.SCROLL[this.orient]] = sca ;	
+			
+		if ( elem[0][propertyStack.SCROLL[this.orient]] !== sca ) {
+			this.__tmp__.scs = this.__tmp__.m;
+				
+			clearTimeout(this.__tmp__.timer);
+			this.__tmp__.timer = false;
+		} else {
+			this.__tmp__.m = this.__tmp__.scs;
+			/*
+			 * triggering loop
+			 **/
+			this.__tmp__.timer = setTimeout(function (){
+				that._getScroll();
+			},15);
+		}
+	}	
+	
+	
+	function getOrientation( elem ){
+		return elem.width() > elem.height() ? 0 : 1;
 	}
 	
 	function getDimension ( elem, index ) {
@@ -84,7 +121,7 @@
 				throw new Error('scrollcontainer child is supposed to be a list, div or table' );
 			}
 		} else {
-			throw new Error('scrollcontainer is supposed to have exaclty 1 child element, but saw '+ elem.children().length)
+			throw new Error('scrollcontainer is supposed to have exaclty 1 child element, but saw '+ elem.children().length);
 		}
 	}
 	
